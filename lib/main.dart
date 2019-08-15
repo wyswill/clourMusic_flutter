@@ -1,0 +1,90 @@
+import 'package:testapp/components/songListPage.dart';
+
+import 'Mine/Mine.dart';
+import 'Find/Find_page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:testapp/cloud/cloud_page.dart';
+import 'package:testapp/Video/Video_page.dart';
+import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
+
+void main() {
+  debugPaintSizeEnabled = false;
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Tables(),
+      routes: {
+        "/songList": (context) => SongListPage(),
+      },
+    );
+  }
+}
+
+class Tables extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: DefaultTabController(
+          initialIndex: 1,
+          length: 4,
+          child: Container(
+            child: Padding(
+              padding: EdgeInsets.only(top: 35),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      IconButton(
+                        icon: Icon(Icons.dehaze),
+                        onPressed: () {},
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: TabBar(
+                          unselectedLabelColor: Colors.black26,
+                          labelColor: Colors.black87,
+                          indicatorColor: Colors.black,
+                          indicatorWeight: 0.01,
+                          labelStyle: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.w700),
+                          unselectedLabelStyle: TextStyle(fontSize: 15),
+                          tabs: <Widget>[
+                            Text('我的'),
+                            Text('发现'),
+                            Text('云村'),
+                            Text('视频'),
+                          ],
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.search),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      child: TabBarView(
+                        children: <Widget>[Mine(), Find(), Cloud(), Video()],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
