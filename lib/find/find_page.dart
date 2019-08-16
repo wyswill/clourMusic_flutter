@@ -208,8 +208,10 @@ class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
                             Navigator.pushNamed(
                               context,
                               '/songList',
-                              arguments:
-                                  'http://localhost:3000/playlist/detail?id=${musicId}',
+                              arguments: {
+                                'url':
+                                    'http://localhost:3000/playlist/detail?id=${musicId}'
+                              },
                             );
                           },
                           child: SongListItem(
