@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SongListItem extends StatelessWidget {
-  String imageUrl;
-  String imageTitle;
-  String playCount;
+  final imageUrl;
+  final imageTitle;
+  final playCount;
   SongListItem({this.imageUrl, this.imageTitle, this.playCount});
 
   @override

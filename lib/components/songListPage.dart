@@ -6,28 +6,27 @@ import 'package:http/http.dart' as http;
 import 'package:testapp/find/components/items.dart';
 
 class SongListPage extends StatefulWidget {
-  final Map arguments;
+  final arguments;
   SongListPage({Key key, this.arguments}) : super(key: key);
   @override
   _SongListPageState createState() => _SongListPageState();
 }
 
-class _SongListPageState extends State<SongListPage>
-    with AutomaticKeepAliveClientMixin {
-  bool get wantKeepAlive => true;
+class _SongListPageState extends State<SongListPage> {
   @override
   void initState() {
     super.initState();
     this.getSongListInto();
   }
 
-  String imgUrl;
-  String playCount;
-  String songListTitle;
-  String description;
-  Map creator;
-  List optionsIcon;
-
+  String imgUrl; //歌单图片
+  String playCount; //播放数量
+  String songListTitle; //歌单标题
+  String description; //歌单描述
+  Map creator; //歌单创建者
+  List optionsIcon; //歌单图标
+  int subscribedCount; //收藏数
+  List songs;
 /* 获取歌单信息 */
   getSongListInto() async {
     var response = await http.get(widget.arguments['url']);
@@ -41,6 +40,7 @@ class _SongListPageState extends State<SongListPage>
         this.songListTitle = res['name'];
         this.creator = res['creator'];
         this.description = res['description'];
+        this.subscribedCount = res['subscribedCount'];
         //评论数和分享数
         this.optionsIcon = [
           {'icon': 0xe7bc, "title": res['commentCount']},
@@ -48,6 +48,8 @@ class _SongListPageState extends State<SongListPage>
           {'icon': 0xe7bc, "title": '下载'},
           {'icon': 0xe7bc, "title": '多选'},
         ];
+        // 歌曲
+        this.songs = res['tracks'];
       });
     }
   }
@@ -137,7 +139,8 @@ class _SongListPageState extends State<SongListPage>
                                 children: <Widget>[
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
-                                    child: Image.network(this.imgUrl),
+                                    child: Image.network(
+                                        this.imgUrl != null ? this.imgUrl : ''),
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
@@ -190,7 +193,9 @@ class _SongListPageState extends State<SongListPage>
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                             child: Image.network(
-                                                this.creator['avatarUrl']),
+                                                this.creator != null
+                                                    ? this.creator['avatarUrl']
+                                                    : ''),
                                           ),
                                         ),
                                         Text(
@@ -307,7 +312,7 @@ class _SongListPageState extends State<SongListPage>
                                           color: Colors.white),
                                     ),
                                     Text(
-                                      '(7132)',
+                                      '(${this.subscribedCount != null ? this.subscribedCount : 0})',
                                       style: prefix0.TextStyle(
                                           color: Colors.white),
                                     )
@@ -317,10 +322,37 @@ class _SongListPageState extends State<SongListPage>
                             ],
                           ),
                         ),
-                        Text('data'),
-                        Text('data'),
-                        Text('data'),
-                        Text('data'),
+                        Column(
+                          children: List.generate(
+                            4,
+                            (index) => Row(
+                                  children: <Widget>[
+                                    Container(
+                                      margin:
+                                          EdgeInsets.only(left: 20, right: 20),
+                                      child: Text(
+                                        '${index + 1}',
+                                        style: prefix0.TextStyle(
+                                            color: Colors.grey),
+                                      ),
+                                    ),
+                                    Column(
+                                      children: <Widget>[
+                                        Container(
+                                          child: Text(
+                                              '${this.songs[index]['name']}'),
+                                        ),
+                                        Container(
+                                          child: Row(
+                                            children: <Widget>[],
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                          ),
+                        )
                       ],
                     ),
                   )

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Items extends StatelessWidget {
-  Icon iconName;
-  String iconTitle;
-  TextStyle textStyle;
+  final iconName;
+  final iconTitle;
+  final textStyle;
   Items(this.iconName, this.iconTitle, {this.textStyle});
   @override
   Widget build(BuildContext context) {

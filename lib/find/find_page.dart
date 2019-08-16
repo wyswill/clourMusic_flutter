@@ -12,8 +12,7 @@ class Find extends StatefulWidget {
   _FindState createState() => _FindState();
 }
 
-class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
-  bool get wantKeepAlive => true;
+class _FindState extends State<Find> {
   List imageS = List();
   List songList = List();
   @override

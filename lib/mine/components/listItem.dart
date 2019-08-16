@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ListItem extends StatelessWidget {
-  int icon;
-  double borderWidth;
-  String title;
+  final icon;
+  final borderWidth;
+  final title;
   ListItem({this.icon, this.title, this.borderWidth});
   @override
   Widget build(BuildContext context) {
