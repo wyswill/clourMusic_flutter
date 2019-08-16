@@ -209,7 +209,7 @@ class _FindState extends State<Find> {
                               '/songList',
                               arguments: {
                                 'url':
-                                    'http://localhost:3000/playlist/detail?id=${musicId}'
+                                    'http://localhost:3000/playlist/detail?id=${musicId.toString()}'
                               },
                             );
                           },

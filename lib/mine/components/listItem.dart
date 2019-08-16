@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ListItem extends StatelessWidget {
   final icon;
-  final borderWidth;
+  double borderWidth;
   final title;
   ListItem({this.icon, this.title, this.borderWidth});
   @override

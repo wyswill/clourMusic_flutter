@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as prefix0;
 import 'package:http/http.dart' as http;
 import 'package:testapp/find/components/items.dart';
 
@@ -289,7 +288,7 @@ class _SongListPageState extends State<SongListPage> {
                               ),
                               Text(
                                 '(共50)首',
-                                style: prefix0.TextStyle(color: Colors.grey),
+                                style: TextStyle(color: Colors.grey),
                               ),
                               Container(
                                 margin: EdgeInsets.only(
@@ -308,13 +307,11 @@ class _SongListPageState extends State<SongListPage> {
                                     ),
                                     Text(
                                       '收藏',
-                                      style: prefix0.TextStyle(
-                                          color: Colors.white),
+                                      style: TextStyle(color: Colors.white),
                                     ),
                                     Text(
                                       '(${this.subscribedCount != null ? this.subscribedCount : 0})',
-                                      style: prefix0.TextStyle(
-                                          color: Colors.white),
+                                      style: TextStyle(color: Colors.white),
                                     )
                                   ],
                                 ),
@@ -332,8 +329,7 @@ class _SongListPageState extends State<SongListPage> {
                                           EdgeInsets.only(left: 20, right: 20),
                                       child: Text(
                                         '${index + 1}',
-                                        style: prefix0.TextStyle(
-                                            color: Colors.grey),
+                                        style: TextStyle(color: Colors.grey),
                                       ),
                                     ),
                                     Column(
@@ -344,7 +340,14 @@ class _SongListPageState extends State<SongListPage> {
                                         ),
                                         Container(
                                           child: Row(
-                                            children: <Widget>[],
+                                            children: List.generate(
+                                              this.songs[index]['ar'].length,
+                                              (ind) => Text(
+                                                    '${this.songs[index]['ar'][ind]['name']}',
+                                                    style:
+                                                        TextStyle(fontSize: 10),
+                                                  ),
+                                            ),
                                           ),
                                         )
                                       ],
