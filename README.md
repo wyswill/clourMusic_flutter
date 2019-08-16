@@ -22,7 +22,7 @@ npm run start
 
 出现一下就说明服务已经启动
 
-![image-20190816092142909](/Volumes/document/asdfa/TestApp/image-20190816092142909.png)
+![image-20190816092142909](image-20190816092142909.png)
 
 有玩过`docker`的老铁，在终端运行以下代码
 
