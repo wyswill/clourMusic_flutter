@@ -325,8 +325,8 @@ class _SongListPageState extends State<SongListPage> {
                           children: List.generate(
                               this.songs.length,
                               (index) => Container(
-                                    margin:
-                                        EdgeInsets.only(left: 10, right: 10,bottom: 12),
+                                    margin: EdgeInsets.only(
+                                        left: 10, right: 10, bottom: 12),
                                     decoration: BoxDecoration(
                                       border: Border(
                                         bottom: BorderSide(
