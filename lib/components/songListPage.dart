@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
+import 'package:testapp/components/single_song.dart';
 import 'package:testapp/find/components/items.dart';
 
 class SongListPage extends StatefulWidget {
@@ -27,14 +28,13 @@ class _SongListPageState extends State<SongListPage> {
   List optionsIcon; //歌单图标
   int subscribedCount; //收藏数
   List songs;
-
+  int song_length;
 /* 获取歌单信息 */
   getSongListInto() async {
     var response = await http.get(widget.arguments['url']);
     if (response.statusCode == 200) {
       var res = json.decode(response.body)['playlist'];
       String count = this.playCountHandler(res['playCount']);
-
       setState(() {
         this.imgUrl = res['coverImgUrl'];
         this.playCount = count;
@@ -51,6 +51,7 @@ class _SongListPageState extends State<SongListPage> {
         ];
         // 歌曲
         this.songs = res['tracks'];
+        this.song_length = res['tracks'].length;
       });
     }
   }
@@ -278,6 +279,9 @@ class _SongListPageState extends State<SongListPage> {
                         topRight: Radius.circular(25),
                       ),
                     ),
+                    constraints: BoxConstraints(
+                      minHeight: 1000,
+                    ),
                     child: Column(
                       children: <Widget>[
                         Container(
@@ -289,12 +293,12 @@ class _SongListPageState extends State<SongListPage> {
                                 style: TextStyle(fontSize: 18),
                               ),
                               Text(
-                                '(共50)首',
+                                '(共${this.song_length})首',
                                 style: TextStyle(color: Colors.grey),
                               ),
                               Container(
                                 margin: EdgeInsets.only(
-                                    top: 10, bottom: 10, left: 140),
+                                    top: 10, bottom: 10, left: 120),
                                 padding: EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                   color: Colors.black,
@@ -309,7 +313,10 @@ class _SongListPageState extends State<SongListPage> {
                                     ),
                                     Text(
                                       '收藏',
-                                      style: TextStyle(color: Colors.white),
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                     Text(
                                       '(${this.subscribedCount != null ? this.subscribedCount : 0})',
@@ -323,52 +330,18 @@ class _SongListPageState extends State<SongListPage> {
                         ),
                         Column(
                           children: List.generate(
-                              this.songs.length,
-                              (index) => Container(
-                                    margin: EdgeInsets.only(
-                                        left: 10, right: 10, bottom: 12),
-                                    decoration: BoxDecoration(
-                                      border: Border(
-                                        bottom: BorderSide(
-                                            width: 1, color: Colors.grey),
-                                      ),
-                                    ),
-                                    child: Row(
-                                      children: <Widget>[
-                                        Container(
-                                          margin: EdgeInsets.only(
-                                              left: 10, right: 10),
-                                          child: Text(
-                                            '${index + 1}',
-                                            style:
-                                                TextStyle(color: Colors.grey),
-                                          ),
-                                        ),
-                                        Column(
-                                          children: <Widget>[
-                                            Container(
-                                              child: Text(
-                                                  '${this.songs[index]['name']}'),
-                                            ),
-                                            Container(
-                                              child: Row(
-                                                children: List.generate(
-                                                  this
-                                                      .songs[index]['ar']
-                                                      .length,
-                                                  (ind) => Text(
-                                                        '${this.songs[index]['ar'][ind]['name']}',
-                                                        style: TextStyle(
-                                                            fontSize: 10),
-                                                      ),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  )),
+                            this.song_length,
+                            (index) {
+                              List ar = this.songs[index]['ar'];
+                              int arlenth = ar.length;
+                              return Single_song(
+                                index: index,
+                                ar: ar,
+                                name: this.songs[index]['name'],
+                                arlenth: arlenth,
+                              );
+                            },
+                          ),
                         )
                       ],
                     ),
