@@ -24,7 +24,7 @@ class _FindState extends State<Find> {
 
 //获取banner图数据
   getBannerImages() async {
-    String url = 'http://localhost:3000/banner?type=2';
+    String url = 'http://192.168.8.122:3000/banner?type=2';
     List serverDataList = List();
     var response = await http.get(url);
     //成功获取数据
@@ -45,7 +45,7 @@ class _FindState extends State<Find> {
 
   // 获取热门歌单
   getSongList() async {
-    String url = 'http://localhost:3000/personalized?limit=9';
+    String url = 'http://192.168.8.122:3000/personalized?limit=9';
     List temp = List();
     var response = await http.get(url);
     if (response.statusCode == 200) {
@@ -209,7 +209,7 @@ class _FindState extends State<Find> {
                               '/songList',
                               arguments: {
                                 'url':
-                                    'http://localhost:3000/playlist/detail?id=${musicId.toString()}'
+                                    'http://192.168.8.122:3000/playlist/detail?id=${musicId.toString()}'
                               },
                             );
                           },

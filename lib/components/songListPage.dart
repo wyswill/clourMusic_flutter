@@ -340,15 +340,15 @@ class _SongListPageState extends State<SongListPage> {
                         //   children: List.generate(
                         //     this.songLength,
                         //     (index) {
-                        //       // List ar = this.songs[index]['ar'];
-                        //       // int arlenth = ar.length;
                         //       return Text('data');
-                        //       // return Single_song(
-                        //       //   index: index,
-                        //       //   ar: ar,
-                        //       //   // name: this.songs[index]['name'],
-                        //       //   arlenth: arlenth,
-                        //       // );
+                        //       List ar = this.songs[index]['ar'];
+                        //       int arlenth = ar.length;
+                        //       return Single_song(
+                        //         index: index,
+                        //         ar: ar,
+                        //         // name: this.songs[index]['name'],
+                        //         arlenth: arlenth,
+                        //       );
                         //     },
                         //   ),
                         // )
