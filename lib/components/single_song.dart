@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Single_song extends StatelessWidget {
+class SingleSong extends StatelessWidget {
   final index;
   final ar;
   final name;
   final arlenth;
-  Single_song({this.index, this.ar, this.name, this.arlenth});
+  SingleSong({this.index, this.ar, this.name, this.arlenth});
   @override
   Widget build(BuildContext context) {
     // print(this.ar);

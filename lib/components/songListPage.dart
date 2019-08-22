@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
-import 'package:testapp/components/single_song.dart';
+import 'package:testapp/components/SingleSong.dart';
 import 'package:testapp/find/components/items.dart';
 
 class SongListPage extends StatefulWidget {
@@ -336,7 +336,7 @@ class _SongListPageState extends State<SongListPage> {
                         //       return Text('data');
                         //       List ar = this.songs[index]['ar'];
                         //       int arlenth = ar.length;
-                        //       return Single_song(
+                        //       return SingleSong(
                         //         index: index,
                         //         ar: ar,
                         //         // name: this.songs[index]['name'],
