@@ -1,46 +1,47 @@
-import 'package:testapp/components/songListPage.dart';
-
-import 'Mine/Mine.dart';
-import 'Find/Find_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+/* 页面引入
+---------- */
+import 'Mine/Mine.dart';
+import 'Find/Find_page.dart';
+import 'package:testapp/tool/router.dart'; //路由
 import 'package:testapp/cloud/cloud_page.dart';
 import 'package:testapp/Video/Video_page.dart';
+import 'package:testapp/components/bottomMusicPlayer/bottomMusicPlayer.dart';
+/* 调试用
+-------- */
 import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
+/* flutter 状态管理
+------------------ */
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
+/* redux
+-------- */
+import './tool/redux.dart';
 
 void main() {
   debugPaintSizeEnabled = false;
-  runApp(MyApp());
+  Store<int> store = new Store<int>(mainReducer, initialState: 0);
+  runApp(MyApp(
+    store: store,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  final routes = {
-    "/songList": (context, {arguments}) => SongListPage(arguments: arguments),
-  };
+  final Store<int> store;
+  MyApp({this.store});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return StoreProvider(
+      store: store,
+      child: MaterialApp(
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        onGenerateRoute: (RouteSettings settings) => generateRoute(settings),
         home: Tables(),
-        onGenerateRoute: (RouteSettings settings) {
-          // 统一处理
-          final String name = settings.name;
-          final Function pageContentBuilder = this.routes[name];
-          if (pageContentBuilder != null) {
-            if (settings.arguments != null) {
-              final Route route = MaterialPageRoute(
-                  builder: (context) => pageContentBuilder(context,
-                      arguments: settings.arguments));
-              return route;
-            } else {
-              final Route route = MaterialPageRoute(
-                  builder: (context) => pageContentBuilder(context));
-              return route;
-            }
-          }
-        });
+      ),
+    );
   }
 }
 
@@ -140,6 +141,7 @@ class Tables extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: BottomMusicPlayer(),
     );
   }
 }
