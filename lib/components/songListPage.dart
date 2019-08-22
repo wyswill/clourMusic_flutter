@@ -28,7 +28,7 @@ class _SongListPageState extends State<SongListPage> {
   List optionsIcon; //歌单图标
   int subscribedCount; //收藏数
   List songs;
-  int song_length;
+  int songLength;
 /* 获取歌单信息 */
   getSongListInto() async {
     var response = await http.get(widget.arguments['url']);
@@ -51,7 +51,7 @@ class _SongListPageState extends State<SongListPage> {
         ];
         // 歌曲
         this.songs = res['tracks'];
-        this.song_length = res['tracks'].length;
+        this.songLength = res['tracks'].length;
       });
     }
   }
@@ -152,7 +152,7 @@ class _SongListPageState extends State<SongListPage> {
                                         color: Colors.white,
                                       ),
                                       Text(
-                                        '${this.playCount != null ? this.playCount : 0}万',
+                                        '${this.playCount ?? 0}万',
                                         style: TextStyle(color: Colors.white),
                                       ),
                                     ],
@@ -249,23 +249,23 @@ class _SongListPageState extends State<SongListPage> {
                         //icons
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: List.generate(
-                            4,
-                            (index) => Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: 10, left: 10, top: 20),
-                                  child: Items(
-                                      Icon(
-                                        IconData(
-                                            this.optionsIcon != null
-                                                ? this.optionsIcon[index]
-                                                    ['icon']
-                                                : '',
-                                            fontFamily: 'iconfont'),
-                                      ),
-                                      '${this.optionsIcon != null ? this.optionsIcon[index]['title'] : ''}'),
-                                ),
-                          ),
+                          children: List.generate(4, (index) {
+                            Map iconObj;
+                            if (this.optionsIcon != null)
+                              iconObj = this.optionsIcon[index];
+                            else
+                              iconObj = {'icon': 0xe7bc, "title": '下载'};
+                            return Padding(
+                              padding: const EdgeInsets.only(
+                                  right: 10, left: 10, top: 20),
+                              child: Items(
+                                  Icon(
+                                    IconData(iconObj['icon'] ?? '',
+                                        fontFamily: 'iconfont'),
+                                  ),
+                                  iconObj['title'] ?? ''),
+                            );
+                          }),
                         ),
                       ],
                     ),
@@ -280,7 +280,7 @@ class _SongListPageState extends State<SongListPage> {
                       ),
                     ),
                     constraints: BoxConstraints(
-                      minHeight: 1000,
+                      minHeight: 600,
                     ),
                     child: Column(
                       children: <Widget>[
@@ -293,7 +293,7 @@ class _SongListPageState extends State<SongListPage> {
                                 style: TextStyle(fontSize: 18),
                               ),
                               Text(
-                                '(共${this.song_length})首',
+                                '(共${this.songLength})首',
                                 style: TextStyle(color: Colors.grey),
                               ),
                               Container(
@@ -319,7 +319,7 @@ class _SongListPageState extends State<SongListPage> {
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                     Text(
-                                      '(${this.subscribedCount != null ? this.subscribedCount : 0})',
+                                      '(${this.subscribedCount ?? 0})',
                                       style: TextStyle(color: Colors.white),
                                     )
                                   ],
@@ -328,21 +328,30 @@ class _SongListPageState extends State<SongListPage> {
                             ],
                           ),
                         ),
-                        Column(
-                          children: List.generate(
-                            this.song_length,
-                            (index) {
-                              List ar = this.songs[index]['ar'];
-                              int arlenth = ar.length;
-                              return Single_song(
-                                index: index,
-                                ar: ar,
-                                name: this.songs[index]['name'],
-                                arlenth: arlenth,
-                              );
-                            },
-                          ),
-                        )
+                        // Container(
+                        //   child: ListView.builder(
+                        //     itemCount: this.songLength,
+                        //     itemBuilder: (context, index) {
+                        //       return Text('index');
+                        //     },
+                        //   ),
+                        // )
+                        // Column(
+                        //   children: List.generate(
+                        //     this.songLength,
+                        //     (index) {
+                        //       // List ar = this.songs[index]['ar'];
+                        //       // int arlenth = ar.length;
+                        //       return Text('data');
+                        //       // return Single_song(
+                        //       //   index: index,
+                        //       //   ar: ar,
+                        //       //   // name: this.songs[index]['name'],
+                        //       //   arlenth: arlenth,
+                        //       // );
+                        //     },
+                        //   ),
+                        // )
                       ],
                     ),
                   )
