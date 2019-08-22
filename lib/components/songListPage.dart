@@ -341,10 +341,15 @@ class _SongListPageState extends State<SongListPage> {
                           children: List.generate(
                             this.songLength ?? 0,
                             (index) {
-                              return SingleSong(
-                                index: index,
-                                ar: this.songs[index]['ar'],
-                                name: this.songs[index]['name'],
+                              return GestureDetector(
+                                child: SingleSong(
+                                  index: index,
+                                  ar: this.songs[index]['ar'],
+                                  name: this.songs[index]['name'],
+                                ),
+                                onTap: () {
+                                  print(this.songs[index]['id']);
+                                },
                               );
                             },
                           ),

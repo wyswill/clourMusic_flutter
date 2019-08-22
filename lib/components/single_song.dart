@@ -36,13 +36,16 @@ class SingleSong extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 Row(
-                  children: List.generate(this.ar.length, (index) {
-                    return Text(
-                      this.ar[index]['name'] + ' - ',
-                      style: TextStyle(fontSize: 10, color: Colors.grey),
-                      overflow: TextOverflow.ellipsis,
-                    );
-                  }),
+                  children: List.generate(
+                    this.ar.length > 3 ? 3 : this.ar.length,
+                    (index) {
+                      return Text(
+                        this.ar[index]['name'] + ' - ',
+                        style: TextStyle(fontSize: 10, color: Colors.grey),
+                        overflow: TextOverflow.ellipsis,
+                      );
+                    },
+                  ),
                 ),
               ],
             ),

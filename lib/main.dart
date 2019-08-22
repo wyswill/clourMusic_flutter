@@ -59,9 +59,12 @@ class Tables extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      IconButton(
-                        icon: Icon(Icons.dehaze),
-                        onPressed: () {},
+                      Builder(
+                        builder: (context) => IconButton(
+                              icon: new Icon(Icons.dehaze),
+                              onPressed: () =>
+                                  Scaffold.of(context).openDrawer(),
+                            ),
                       ),
                       Expanded(
                         flex: 1,
@@ -99,6 +102,42 @@ class Tables extends StatelessWidget {
               ),
             ),
           ),
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('header'.toUpperCase()),
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+              ),
+            ),
+            ListTile(
+              title: Text(
+                'AAAAAA',
+                textAlign: TextAlign.right,
+              ),
+              trailing: Icon(
+                Icons.message,
+                color: Colors.black12,
+                size: 25.0,
+              ),
+              onTap: () => Navigator.pop(context),
+            ),
+            ListTile(
+              title: Text(
+                'AAAAAA',
+                textAlign: TextAlign.left,
+              ),
+              leading: Icon(
+                Icons.message,
+                color: Colors.black12,
+                size: 25.0,
+              ),
+              onTap: () => Navigator.pop(context),
+            ),
+          ],
         ),
       ),
     );
