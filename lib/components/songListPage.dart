@@ -99,7 +99,7 @@ class _SongListPageState extends State<SongListPage> {
                               },
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 10, right: 210),
+                              padding: EdgeInsets.only(left: 10, right: 190),
                               child: Text(
                                 '歌单',
                                 style: TextStyle(
@@ -286,19 +286,21 @@ class _SongListPageState extends State<SongListPage> {
                       children: <Widget>[
                         Container(
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Icon(Icons.play_circle_filled),
-                              Text(
-                                '播放全部',
-                                style: TextStyle(fontSize: 18),
-                              ),
-                              Text(
-                                '(共${this.songLength})首',
-                                style: TextStyle(color: Colors.grey),
+                              Container(
+                                child: Row(
+                                  children: <Widget>[
+                                    Icon(Icons.play_circle_filled),
+                                    Text('播放全部',
+                                        style: TextStyle(fontSize: 18)),
+                                    Text('(共${this.songLength ?? 0})首',
+                                        style: TextStyle(color: Colors.grey)),
+                                  ],
+                                ),
                               ),
                               Container(
-                                margin: EdgeInsets.only(
-                                    top: 10, bottom: 10, left: 120),
+                                margin: EdgeInsets.only(top: 10, bottom: 10),
                                 padding: EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                   color: Colors.black,
@@ -307,21 +309,12 @@ class _SongListPageState extends State<SongListPage> {
                                 ),
                                 child: Row(
                                   children: <Widget>[
-                                    Icon(
-                                      Icons.add,
-                                      color: Colors.white,
-                                    ),
-                                    Text(
-                                      '收藏',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    Text(
-                                      '(${this.subscribedCount ?? 0})',
-                                      style: TextStyle(color: Colors.white),
-                                    )
+                                    Icon(Icons.add, color: Colors.white),
+                                    Text('收藏',
+                                        style: TextStyle(color: Colors.white),
+                                        overflow: TextOverflow.ellipsis),
+                                    Text('(${this.subscribedCount ?? 0})',
+                                        style: TextStyle(color: Colors.white))
                                   ],
                                 ),
                               )

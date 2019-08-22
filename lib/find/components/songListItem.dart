@@ -9,10 +9,10 @@ class SongListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 120,
+      width: 110,
       decoration: BoxDecoration(),
-      child: Padding(
-        padding: EdgeInsets.only(top: 15, right: 10),
+      child: Container(
+        margin: EdgeInsets.only(top: 15, right: 10),
         child: Stack(
           children: <Widget>[
             Column(

@@ -15,6 +15,7 @@ class Find extends StatefulWidget {
 class _FindState extends State<Find> {
   List imageS = List();
   List songList = List();
+  String server = 'http://192.168.8.122:3000';
   @override
   void initState() {
     super.initState();
@@ -24,7 +25,7 @@ class _FindState extends State<Find> {
 
 //获取banner图数据
   getBannerImages() async {
-    String url = 'http://192.168.8.122:3000/banner?type=2';
+    String url = '${this.server}/banner?type=2';
     List serverDataList = List();
     var response = await http.get(url);
     //成功获取数据
@@ -45,7 +46,7 @@ class _FindState extends State<Find> {
 
   // 获取热门歌单
   getSongList() async {
-    String url = 'http://192.168.8.122:3000/personalized?limit=9';
+    String url = '${this.server}/personalized?limit=9';
     List temp = List();
     var response = await http.get(url);
     if (response.statusCode == 200) {
@@ -96,7 +97,7 @@ class _FindState extends State<Find> {
           children: <Widget>[
             // banner图
             BannerView(
-              height: 146,
+              height: 135,
               data: this.imageS,
               buildShowView: (index, data) {
                 return ClipRRect(
@@ -194,10 +195,8 @@ class _FindState extends State<Find> {
                   ),
                   // 歌单元素
                   Wrap(
-                    runSpacing: 5,
+                    runSpacing: 3,
                     direction: Axis.horizontal,
-                    alignment: WrapAlignment.end,
-                    runAlignment: WrapAlignment.spaceBetween,
                     children: List.generate(
                       this.songList.length,
                       (index) {
@@ -209,7 +208,7 @@ class _FindState extends State<Find> {
                               '/songList',
                               arguments: {
                                 'url':
-                                    'http://192.168.8.122:3000/playlist/detail?id=${musicId.toString()}'
+                                    '${this.server}/playlist/detail?id=${musicId.toString()}'
                               },
                             );
                           },
