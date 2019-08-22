@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
-import 'package:testapp/components/SingleSong.dart';
 import 'package:testapp/find/components/items.dart';
 
 class SongListPage extends StatefulWidget {
@@ -88,37 +87,50 @@ class _SongListPageState extends State<SongListPage> {
                     child: Column(
                       children: <Widget>[
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            IconButton(
-                              icon: Icon(
-                                Icons.arrow_back,
-                                color: Colors.white,
+                            Container(
+                              child: Row(
+                                children: <Widget>[
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.arrow_back,
+                                      color: Colors.white,
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10),
+                                    child: Text(
+                                      '歌单',
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.white),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 10, right: 190),
-                              child: Text(
-                                '歌单',
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.white),
+                            Container(
+                              child: Row(
+                                children: <Widget>[
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.search,
+                                      color: Colors.white,
+                                    ),
+                                    onPressed: () {},
+                                  ),
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.drag_handle,
+                                      color: Colors.white,
+                                    ),
+                                    onPressed: () {},
+                                  )
+                                ],
                               ),
-                            ),
-                            IconButton(
-                              icon: Icon(
-                                Icons.search,
-                                color: Colors.white,
-                              ),
-                              onPressed: () {},
-                            ),
-                            IconButton(
-                              icon: Icon(
-                                Icons.drag_handle,
-                                color: Colors.white,
-                              ),
-                              onPressed: () {},
                             )
                           ],
                         ),

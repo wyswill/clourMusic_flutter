@@ -8,7 +8,6 @@ class SingleSong extends StatelessWidget {
   SingleSong({this.index, this.ar, this.name, this.arlenth});
   @override
   Widget build(BuildContext context) {
-    // print(this.ar);
     return Container(
       margin: EdgeInsets.only(
         left: 10,
