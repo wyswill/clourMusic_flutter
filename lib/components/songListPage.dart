@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
+import 'package:testapp/components/single_song.dart';
 import 'package:testapp/find/components/items.dart';
 
 class SongListPage extends StatefulWidget {
@@ -43,10 +43,10 @@ class _SongListPageState extends State<SongListPage> {
         this.subscribedCount = res['subscribedCount'];
         //评论数和分享数
         this.optionsIcon = [
-          {'icon': 0xe7bc, "title": res['commentCount']},
-          {'icon': 0xe7bc, "title": res['shareCount']},
-          {'icon': 0xe7bc, "title": '下载'},
-          {'icon': 0xe7bc, "title": '多选'},
+          {'icon': 0xe628, "title": res['commentCount']},
+          {'icon': 0xe620, "title": res['shareCount']},
+          {'icon': 0xe612, "title": '下载'},
+          {'icon': 0xe62e, "title": '多选'},
         ];
         // 歌曲
         this.songs = res['tracks'];
@@ -67,7 +67,7 @@ class _SongListPageState extends State<SongListPage> {
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage(this.imgUrl != null ? this.imgUrl : ''),
+              image: NetworkImage(this.imgUrl ?? ''),
               alignment: Alignment.topCenter,
             ),
           ),
@@ -83,7 +83,7 @@ class _SongListPageState extends State<SongListPage> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 35),
+                    padding: EdgeInsets.only(top: 20),
                     child: Column(
                       children: <Widget>[
                         Row(
@@ -153,8 +153,7 @@ class _SongListPageState extends State<SongListPage> {
                                 children: <Widget>[
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
-                                    child: Image.network(
-                                        this.imgUrl != null ? this.imgUrl : ''),
+                                    child: Image.network(this.imgUrl ?? ''),
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
@@ -266,16 +265,21 @@ class _SongListPageState extends State<SongListPage> {
                             if (this.optionsIcon != null)
                               iconObj = this.optionsIcon[index];
                             else
-                              iconObj = {'icon': 0xe7bc, "title": '下载'};
+                              iconObj = {'icon': 0xe7bc, "title": ''};
                             return Padding(
                               padding: const EdgeInsets.only(
                                   right: 10, left: 10, top: 20),
                               child: Items(
-                                  Icon(
-                                    IconData(iconObj['icon'] ?? '',
-                                        fontFamily: 'iconfont'),
-                                  ),
-                                  iconObj['title'] ?? ''),
+                                Icon(
+                                  IconData(iconObj['icon'] ?? '',
+                                      fontFamily: 'iconfont'),
+                                ),
+                                iconObj['title'] ?? '',
+                                textStyle: TextStyle(
+                                  fontSize: 12,
+                                ),
+                                bgColor: false,
+                              ),
                             );
                           }),
                         ),
@@ -333,30 +337,18 @@ class _SongListPageState extends State<SongListPage> {
                             ],
                           ),
                         ),
-                        // Container(
-                        //   child: ListView.builder(
-                        //     itemCount: this.songLength,
-                        //     itemBuilder: (context, index) {
-                        //       return Text('index');
-                        //     },
-                        //   ),
-                        // )
-                        // Column(
-                        //   children: List.generate(
-                        //     this.songLength,
-                        //     (index) {
-                        //       return Text('data');
-                        //       List ar = this.songs[index]['ar'];
-                        //       int arlenth = ar.length;
-                        //       return SingleSong(
-                        //         index: index,
-                        //         ar: ar,
-                        //         // name: this.songs[index]['name'],
-                        //         arlenth: arlenth,
-                        //       );
-                        //     },
-                        //   ),
-                        // )
+                        Column(
+                          children: List.generate(
+                            this.songLength ?? 0,
+                            (index) {
+                              return SingleSong(
+                                index: index,
+                                ar: this.songs[index]['ar'],
+                                name: this.songs[index]['name'],
+                              );
+                            },
+                          ),
+                        )
                       ],
                     ),
                   )

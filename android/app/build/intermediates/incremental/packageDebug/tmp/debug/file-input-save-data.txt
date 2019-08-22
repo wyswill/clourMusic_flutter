@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Aug 22 13:35:18 CST 2019
+#Thu Aug 22 15:08:40 CST 2019
 4.path=flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
 8.set=DEX
 6.path=flutter_assets/fonts/MaterialIcons-Regular.ttf

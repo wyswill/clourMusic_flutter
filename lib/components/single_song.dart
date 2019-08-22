@@ -4,8 +4,11 @@ class SingleSong extends StatelessWidget {
   final index;
   final ar;
   final name;
-  final arlenth;
-  SingleSong({this.index, this.ar, this.name, this.arlenth});
+  SingleSong({
+    this.index,
+    this.ar,
+    this.name,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,23 +26,26 @@ class SingleSong extends StatelessWidget {
               style: TextStyle(color: Colors.grey),
             ),
           ),
-          Column(
-            children: <Widget>[
-              Container(
-                child: Text('${this.name}'),
-              ),
-              Container(
-                child: Row(
-                  children: List.generate(int.parse(this.arlenth), (index) {
-                    // print(this.ar[index]['name']);
+          Container(
+            constraints: BoxConstraints(maxWidth: 320),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  this.name,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Row(
+                  children: List.generate(this.ar.length, (index) {
                     return Text(
-                      'asdfasdf',
-                      style: TextStyle(fontSize: 10),
+                      this.ar[index]['name'] + ' - ',
+                      style: TextStyle(fontSize: 10, color: Colors.grey),
+                      overflow: TextOverflow.ellipsis,
                     );
                   }),
                 ),
-              )
-            ],
+              ],
+            ),
           )
         ],
       ),

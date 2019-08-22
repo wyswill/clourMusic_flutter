@@ -9,16 +9,16 @@ class Mine extends StatefulWidget {
 
 class _MineState extends State<Mine> {
   List icons = [
-    {"icon": 0xe7bc, "title": '私人FM'},
+    {"icon": 0xe65b, "title": '私人FM'},
     {"icon": 0xe7bc, "title": '最新电音'},
-    {"icon": 0xe65b, "title": '私藏推荐'},
-    {"icon": 0xe7bc, "title": '因乐交友'},
-    {"icon": 0xe7bc, "title": '亲子频道'},
-    {"icon": 0xe7bc, "title": '古典专区'},
-    {"icon": 0xe7bc, "title": '跑步FM'},
-    {"icon": 0xe7bc, "title": '小冰电台'},
-    {"icon": 0xe7bc, "title": '爵士电台'},
-    {"icon": 0xe7bc, "title": '驾驶模式'},
+    {"icon": 0xe75e, "title": '私藏推荐'},
+    {"icon": 0xe75e, "title": '因乐交友'},
+    {"icon": 0xe84e, "title": '亲子频道'},
+    {"icon": 0xe611, "title": '古典专区'},
+    {"icon": 0xe608, "title": '跑步FM'},
+    {"icon": 0xe60a, "title": '小冰电台'},
+    {"icon": 0xe605, "title": '爵士电台'},
+    {"icon": 0xec6d, "title": '驾驶模式'},
   ];
   List<Widget> listItem = List();
   @override
