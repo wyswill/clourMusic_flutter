@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.example.testapp;
+package com.example.cloudMusic_flutter;
 
 public final class R {
   public static final class drawable {

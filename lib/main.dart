@@ -4,10 +4,10 @@ import 'package:flutter/rendering.dart';
 ---------- */
 import 'Mine/Mine.dart';
 import 'Find/Find_page.dart';
-import 'package:testapp/tool/router.dart'; //路由
-import 'package:testapp/cloud/cloud_page.dart';
-import 'package:testapp/Video/Video_page.dart';
-import 'package:testapp/components/bottomMusicPlayer/bottomMusicPlayer.dart';
+import 'package:cloudMusic_flutter/tool/router.dart'; //路由
+import 'package:cloudMusic_flutter/cloud/cloud_page.dart';
+import 'package:cloudMusic_flutter/Video/Video_page.dart';
+import 'package:cloudMusic_flutter/components/bottomMusicPlayer/bottomMusicPlayer.dart';
 /* 调试用
 -------- */
 import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;

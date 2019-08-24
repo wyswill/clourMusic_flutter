@@ -22,7 +22,7 @@ npm run start
 
 出现一下就说明服务已经启动
 
-![image-20190816092142909](/Volumes/document/asdfa/TestApp/image-20190816092142909.png)
+![image-20190816092142909](/Volumes/document/asdfa/cloudMusic_flutter/image-20190816092142909.png)
 
 有玩过`docker`的老铁，在终端运行以下代码
 
@@ -30,6 +30,5 @@ npm run start
 #拉取后台镜像
 docker pull binaryify/netease_cloud_music_api
 #启动服务，将端口映射到本地的 3000端口
-docker run -d -p 3000:3000 --name netease_cloud_music_api binaryify/netease_cloud_music_api 
+docker run -d -p 3000:3000 --name netease_cloud_music_api binaryify/netease_cloud_music_api
 ```
-

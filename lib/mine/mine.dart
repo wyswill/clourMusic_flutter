@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:testapp/find/components/items.dart';
-import 'package:testapp/mine/components/listItem.dart';
+import 'package:cloudMusic_flutter/find/components/items.dart';
+import 'package:cloudMusic_flutter/mine/components/listItem.dart';
 
 class Mine extends StatefulWidget {
   _MineState createState() => _MineState();

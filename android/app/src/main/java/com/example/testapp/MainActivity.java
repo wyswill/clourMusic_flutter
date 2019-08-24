@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.cloudMusic_flutter;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

@@ -2,9 +2,9 @@ import 'dart:ui';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:testapp/components/bottomMusicPlayer/bottomMusicPlayer.dart';
-import 'package:testapp/components/single_song.dart';
-import 'package:testapp/find/components/items.dart';
+import 'package:cloudMusic_flutter/components/bottomMusicPlayer/bottomMusicPlayer.dart';
+import 'package:cloudMusic_flutter/components/single_song.dart';
+import 'package:cloudMusic_flutter/find/components/items.dart';
 
 class SongListPage extends StatefulWidget {
   final arguments;

@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
-import 'package:testapp/find/components/items.dart';
-import 'package:testapp/find/components/songListItem.dart';
+import 'package:cloudMusic_flutter/find/components/items.dart';
+import 'package:cloudMusic_flutter/find/components/songListItem.dart';
 
 class Find extends StatefulWidget {
   @override

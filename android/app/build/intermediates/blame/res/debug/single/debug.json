@@ -1,26 +1,26 @@
 [
     {
-        "merged": "/Volumes/document/TestApp/android/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "/Volumes/document/TestApp/android/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+        "merged": "/Volumes/document/cloudMusic_flutter/android/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/Volumes/document/cloudMusic_flutter/android/app/src/main/res/mipmap-mdpi/ic_launcher.png"
     },
     {
-        "merged": "/Volumes/document/TestApp/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "/Volumes/document/TestApp/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+        "merged": "/Volumes/document/cloudMusic_flutter/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/Volumes/document/cloudMusic_flutter/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "/Volumes/document/TestApp/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "/Volumes/document/TestApp/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+        "merged": "/Volumes/document/cloudMusic_flutter/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/Volumes/document/cloudMusic_flutter/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
-        "merged": "/Volumes/document/TestApp/android/app/build/intermediates/res/merged/debug/drawable_launch_background.xml.flat",
-        "source": "/Volumes/document/TestApp/android/app/src/main/res/drawable/launch_background.xml"
+        "merged": "/Volumes/document/cloudMusic_flutter/android/app/build/intermediates/res/merged/debug/drawable_launch_background.xml.flat",
+        "source": "/Volumes/document/cloudMusic_flutter/android/app/src/main/res/drawable/launch_background.xml"
     },
     {
-        "merged": "/Volumes/document/TestApp/android/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "/Volumes/document/TestApp/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+        "merged": "/Volumes/document/cloudMusic_flutter/android/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/Volumes/document/cloudMusic_flutter/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     },
     {
-        "merged": "/Volumes/document/TestApp/android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "/Volumes/document/TestApp/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+        "merged": "/Volumes/document/cloudMusic_flutter/android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/Volumes/document/cloudMusic_flutter/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
     }
 ]

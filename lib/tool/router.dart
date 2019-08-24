@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:testapp/components/songListPage.dart';
+import 'package:cloudMusic_flutter/components/songListPage.dart';
 
 Map routes = {
   "/songList": (context, {arguments}) => SongListPage(arguments: arguments),
