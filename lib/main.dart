@@ -62,10 +62,9 @@ class Tables extends StatelessWidget {
                     children: <Widget>[
                       Builder(
                         builder: (context) => IconButton(
-                              icon: new Icon(Icons.dehaze),
-                              onPressed: () =>
-                                  Scaffold.of(context).openDrawer(),
-                            ),
+                          icon: new Icon(Icons.dehaze),
+                          onPressed: () => Scaffold.of(context).openDrawer(),
+                        ),
                       ),
                       Expanded(
                         flex: 1,

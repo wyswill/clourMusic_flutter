@@ -15,7 +15,7 @@ class Find extends StatefulWidget {
 class _FindState extends State<Find> {
   List imageS = List();
   List songList = List();
-  String server = 'http://192.168.8.122:3000';
+  String server = 'http://192.168.8.204:3000';
   @override
   void initState() {
     super.initState();

@@ -1,4 +1,4 @@
-#Thu Aug 22 16:28:41 CST 2019
+#Sat Aug 24 14:43:11 CST 2019
 base.0=/Volumes/document/TestApp/android/app/build/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex
