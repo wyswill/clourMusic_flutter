@@ -39,12 +39,12 @@ class _MineState extends State<Mine> {
                 children: List.generate(
                   icons.length,
                   (index) => Padding(
-                        padding: const EdgeInsets.only(right: 10, left: 10),
-                        child: Items(
-                            Icon(IconData(this.icons[index]['icon'],
-                                fontFamily: 'iconfont')),
-                            '${this.icons[index]['title']}'),
-                      ),
+                    padding: const EdgeInsets.only(right: 10, left: 10),
+                    child: Items(
+                        Icon(IconData(this.icons[index]['icon'],
+                            fontFamily: 'iconfont')),
+                        '${this.icons[index]['title']}'),
+                  ),
                 ),
               ),
             ),

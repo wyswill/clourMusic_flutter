@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'dart:ui';
 /* 页面引入
 ---------- */
 import 'Mine/Mine.dart';
@@ -29,7 +30,9 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final Store<int> store;
+
   MyApp({this.store});
+
   @override
   Widget build(BuildContext context) {
     return StoreProvider(
