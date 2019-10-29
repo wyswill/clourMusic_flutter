@@ -9,7 +9,7 @@ INJECTED from /Volumes/document/cloudMusic_flutter/android/app/src/debug/Android
 INJECTED from /Volumes/document/cloudMusic_flutter/android/app/src/debug/AndroidManifest.xml:1:1-7:12
 INJECTED from /Volumes/document/cloudMusic_flutter/android/app/src/debug/AndroidManifest.xml:1:1-7:12
 	package
-		ADDED from /Volumes/document/cloudMusic_flutter/android/app/src/main/AndroidManifest.xml:2:5-34
+		ADDED from /Volumes/document/cloudMusic_flutter/android/app/src/main/AndroidManifest.xml:2:5-45
 		INJECTED from /Volumes/document/cloudMusic_flutter/android/app/src/main/AndroidManifest.xml
 		INJECTED from /Volumes/document/cloudMusic_flutter/android/app/src/debug/AndroidManifest.xml
 	android:versionName
@@ -25,7 +25,7 @@ INJECTED from /Volumes/document/cloudMusic_flutter/android/app/src/debug/Android
 application
 ADDED from /Volumes/document/cloudMusic_flutter/android/app/src/main/AndroidManifest.xml:9:5-32:19
 	android:label
-		ADDED from /Volumes/document/cloudMusic_flutter/android/app/src/main/AndroidManifest.xml:11:9-32
+		ADDED from /Volumes/document/cloudMusic_flutter/android/app/src/main/AndroidManifest.xml:11:9-43
 	android:icon
 		ADDED from /Volumes/document/cloudMusic_flutter/android/app/src/main/AndroidManifest.xml:12:9-43
 	android:name

@@ -61,11 +61,19 @@ class _SongListPageState extends State<SongListPage> {
     return temp.floor().toString();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.red,
+      appBar: AppBar(
+        title: Text('歌单'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: SingleChildScrollView(
         child: Container(
+
           decoration: BoxDecoration(
             image: DecorationImage(
               image: NetworkImage(this.imgUrl ?? ''),
@@ -76,70 +84,72 @@ class _SongListPageState extends State<SongListPage> {
             children: <Widget>[
               Stack(
                 children: <Widget>[
-                  BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-                    child: Container(
-                      height: 413,
-                      color: Colors.black.withOpacity(0.1),
+                  Container(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                      child: Container(
+                        height: 400,
+                        color: Colors.black.withOpacity(0.2),
+                      ),
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 20),
+//                    padding: EdgeInsets.only(top: 20),
                     child: Column(
                       children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Container(
-                              child: Row(
-                                children: <Widget>[
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.arrow_back,
-                                      color: Colors.white,
-                                    ),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 10),
-                                    child: Text(
-                                      '歌单',
-                                      style: TextStyle(
-                                          fontSize: 20, color: Colors.white),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              child: Row(
-                                children: <Widget>[
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.search,
-                                      color: Colors.white,
-                                    ),
-                                    onPressed: () {},
-                                  ),
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.drag_handle,
-                                      color: Colors.white,
-                                    ),
-                                    onPressed: () {},
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //   children: <Widget>[
+                        //     Container(
+                        //       child: Row(
+                        //         children: <Widget>[
+                        //           IconButton(
+                        //             icon: Icon(
+                        //               Icons.arrow_back,
+                        //               color: Colors.white,
+                        //             ),
+                        //             onPressed: () {
+                        //               Navigator.pop(context);
+                        //             },
+                        //           ),
+                        //           Padding(
+                        //             padding: EdgeInsets.only(left: 10),
+                        //             child: Text(
+                        //               '歌单',
+                        //               style: TextStyle(
+                        //                   fontSize: 20, color: Colors.white),
+                        //             ),
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //     Container(
+                        //       child: Row(
+                        //         children: <Widget>[
+                        //           IconButton(
+                        //             icon: Icon(
+                        //               Icons.search,
+                        //               color: Colors.white,
+                        //             ),
+                        //             onPressed: () {},
+                        //           ),
+                        //           IconButton(
+                        //             icon: Icon(
+                        //               Icons.drag_handle,
+                        //               color: Colors.white,
+                        //             ),
+                        //             onPressed: () {},
+                        //           )
+                        //         ],
+                        //       ),
+                        //     )
+                        //   ],
+                        // ),
                       ],
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 75),
+                    padding: EdgeInsets.only(top: 35),
                     child: Column(
                       children: <Widget>[
                         // 歌单图片和标题

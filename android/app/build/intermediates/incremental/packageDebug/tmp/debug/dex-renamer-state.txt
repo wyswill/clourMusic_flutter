@@ -1,4 +1,4 @@
-#Sat Aug 24 15:04:54 CST 2019
+#Tue Oct 29 18:25:12 CST 2019
 base.0=/Volumes/document/cloudMusic_flutter/android/app/build/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex
