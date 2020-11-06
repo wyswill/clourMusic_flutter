@@ -2,7 +2,7 @@
  * @LastEditors: wyswill
  * @Description: 文件描述
  * @Date: 2020-11-06 11:34:05
- * @LastEditTime: 2020-11-06 16:22:28
+ * @LastEditTime: 2020-11-06 17:15:03
  */
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,6 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
   Animation<double> _animation;
   Animation<double> _opacit;
   Request request;
-  List<dynamic> banners = [];
   double size;
   List<Map<String, dynamic>> catgorys = [];
   @override
@@ -55,18 +54,6 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
       {"title": "数字专辑", "icon": Icon(Icons.calculate, size: size)},
       {"title": "唱聊", "icon": Icon(Icons.calculate, size: size)},
     ];
-  }
-
-  @override
-  void didChangeDependencies() async {
-    super.didChangeDependencies();
-    try {
-      Response<Map<String, dynamic>> bannerlist =
-          await request.dio.get('/banner?type=2');
-      banners = bannerlist.data["banners"];
-    } catch (e) {
-      print(e);
-    }
   }
 
   @override
@@ -112,10 +99,7 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: [
-            bannerSet(),
-            cats(),
-          ],
+          children: [bannerSet(), cats(), findSonList()],
         ),
       ),
     );
@@ -157,19 +141,30 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
     );
   }
 
-  Widget bannerSet() => Container(
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        width: MediaQuery.of(context).size.width,
-        height: 150,
-        child: Swiper(
-          autoplay: true,
-          viewportFraction: 0.8,
-          scale: 0.9,
-          itemBuilder: (BuildContext context, int index) {
-            return Image.network(banners[index]['pic'], fit: BoxFit.fill);
-          },
-          itemCount: banners.length,
-        ),
+  Widget bannerSet() => FutureBuilder(
+        future: request.dio.get('/banner?type=2'),
+        builder:
+            (BuildContext context, AsyncSnapshot<Response<dynamic>> snapshot) {
+          Widget child;
+          if (snapshot.hasData) {
+            child = Swiper(
+              autoplay: true,
+              viewportFraction: 0.8,
+              scale: 0.9,
+              itemBuilder: (BuildContext context, int index) {
+                return Image.network(
+                    snapshot.data.data["banners"][index]['pic'],
+                    fit: BoxFit.fill);
+              },
+              itemCount: snapshot.data.data["banners"].length,
+            );
+          }
+          return Container(
+              margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              width: MediaQuery.of(context).size.width,
+              height: 150,
+              child: child);
+        },
       );
   Widget cats() => SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -181,10 +176,16 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
               height: 90,
               child: Column(
                 children: [
-                  IconButton(
-                    color: Colors.green,
-                    icon: catgorys[index]['icon'],
-                    onPressed: () {},
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(86, 86, 86, 1),
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                    ),
+                    child: IconButton(
+                      color: Colors.red,
+                      icon: catgorys[index]['icon'],
+                      onPressed: () {},
+                    ),
                   ),
                   Text(catgorys[index]['title'],
                       style: TextStyle(color: Colors.grey))
@@ -194,4 +195,59 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
           ),
         ),
       );
+  Widget titleContainer({String title, String moreStr, Widget child}) =>
+      Container(
+        margin: EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ),
+                Expanded(child: Container()),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                  child: Text(moreStr),
+                )
+              ],
+            ),
+            child
+          ],
+        ),
+      );
+
+  Widget findSonList() => titleContainer(
+      title: '发现好歌单',
+      moreStr: '查看更多',
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: FutureBuilder(
+          future: request.dio.get('/personalized?limit=6'),
+          builder: (context, snapshot) {
+            List<Widget> childe = [];
+            if (snapshot.hasData) {
+              List<dynamic> datas = snapshot.data.data['result'];
+              childe = List.generate(
+                datas.length,
+                (index) => Container(
+                  width: 100,
+                  height: 100,
+                  child: Column(
+                    children: [Image.network(datas[index]['picUrl'])],
+                  ),
+                ),
+              );
+            }
+            return Row(
+              children: childe,
+            );
+          },
+        ),
+      ));
 }
