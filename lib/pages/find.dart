@@ -2,10 +2,14 @@
  * @LastEditors: wyswill
  * @Description: 文件描述
  * @Date: 2020-11-06 11:34:05
- * @LastEditTime: 2020-11-06 15:08:10
+ * @LastEditTime: 2020-11-06 16:22:28
  */
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_cloudMusic/dto/banner.entity.dart';
+import 'package:flutter_cloudMusic/utile.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 class Find extends StatefulWidget {
   Find({Key key}) : super(key: key);
@@ -21,10 +25,14 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation;
   Animation<double> _opacit;
-
+  Request request;
+  List<dynamic> banners = [];
+  double size;
+  List<Map<String, dynamic>> catgorys = [];
   @override
   void initState() {
     super.initState();
+    request = Request();
     _controller =
         AnimationController(duration: const Duration(seconds: 1), vsync: this);
     _animation = new Tween(begin: 55.0, end: 0.0).animate(_controller)
@@ -35,6 +43,30 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
       ..addListener(() {
         setState(() {});
       });
+
+    size = 30;
+    catgorys = [
+      {"title": "每日推荐", "icon": Icon(Icons.five_mp, size: size)},
+      {"title": "私人FM", "icon": Icon(Icons.calculate, size: size)},
+      {"title": "歌单", "icon": Icon(Icons.calculate, size: size)},
+      {"title": "排行榜", "icon": Icon(Icons.calculate, size: size)},
+      {"title": "直播", "icon": Icon(Icons.calculate, size: size)},
+      {"title": "电台", "icon": Icon(Icons.calculate, size: size)},
+      {"title": "数字专辑", "icon": Icon(Icons.calculate, size: size)},
+      {"title": "唱聊", "icon": Icon(Icons.calculate, size: size)},
+    ];
+  }
+
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    try {
+      Response<Map<String, dynamic>> bannerlist =
+          await request.dio.get('/banner?type=2');
+      banners = bannerlist.data["banners"];
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -78,8 +110,13 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
           ),
         ],
       ),
-      body: Container(
-        child: Text('find'),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            bannerSet(),
+            cats(),
+          ],
+        ),
       ),
     );
   }
@@ -119,4 +156,42 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
       ),
     );
   }
+
+  Widget bannerSet() => Container(
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        width: MediaQuery.of(context).size.width,
+        height: 150,
+        child: Swiper(
+          autoplay: true,
+          viewportFraction: 0.8,
+          scale: 0.9,
+          itemBuilder: (BuildContext context, int index) {
+            return Image.network(banners[index]['pic'], fit: BoxFit.fill);
+          },
+          itemCount: banners.length,
+        ),
+      );
+  Widget cats() => SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: List.generate(
+            catgorys.length,
+            (index) => Container(
+              width: 90,
+              height: 90,
+              child: Column(
+                children: [
+                  IconButton(
+                    color: Colors.green,
+                    icon: catgorys[index]['icon'],
+                    onPressed: () {},
+                  ),
+                  Text(catgorys[index]['title'],
+                      style: TextStyle(color: Colors.grey))
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
 }

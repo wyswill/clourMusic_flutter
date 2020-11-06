@@ -13,7 +13,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   dio: ^3.0.10
   provider: ^4.3.2+2
-  
+  flutter_swiper: ^1.1.6
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,3 +1,9 @@
+/*
+ * @LastEditors: wyswill
+ * @Description: 文件描述
+ * @Date: 2020-11-06 10:57:54
+ * @LastEditTime: 2020-11-06 16:18:56
+ */
 import 'package:flutter/material.dart';
 import 'package:flutter_cloudMusic/pages/account.dart';
 import 'package:flutter_cloudMusic/pages/cloudVilige.dart';
@@ -34,7 +40,9 @@ class _MyAppState extends State<MyApp> {
           unselectedItemColor: Colors.black,
           unselectedLabelStyle: TextStyle(color: Colors.black),
           showUnselectedLabels: true,
+          backgroundColor: Colors.black,
         ),
+        scaffoldBackgroundColor: Colors.black,
       ),
       home: Scaffold(
         body: IndexedStack(
