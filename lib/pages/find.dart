@@ -2,13 +2,15 @@
  * @LastEditors: wyswill
  * @Description: 文件描述
  * @Date: 2020-11-06 11:34:05
- * @LastEditTime: 2020-11-09 16:01:13
+ * @LastEditTime: 2020-11-09 18:47:37
  */
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_cloudMusic/store/store.dart';
 import 'package:flutter_cloudMusic/utile.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:provider/provider.dart';
 
 class Find extends StatefulWidget {
   Find({Key key, this.arguments}) : super(key: key);
@@ -98,7 +100,7 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: [bannerSet(), cats(), findSonList(),tuijian()],
+          children: [bannerSet(), cats(), findSonList(), tuijian()],
         ),
       ),
     );
@@ -151,9 +153,12 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
               viewportFraction: 0.8,
               scale: 0.9,
               itemBuilder: (BuildContext context, int index) {
-                return Image.network(
-                    snapshot.data.data["banners"][index]['pic'],
-                    fit: BoxFit.fill);
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.network(
+                      snapshot.data.data["banners"][index]['pic'],
+                      fit: BoxFit.fill),
+                );
               },
               itemCount: snapshot.data.data["banners"].length,
             );
@@ -163,7 +168,7 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
               width: MediaQuery.of(context).size.width,
               height: 150,
               child: child);
-        },
+        }, //
       );
   Widget cats() => SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -194,7 +199,8 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
           ),
         ),
       );
-  Widget titleContainer({String title, String moreStr, Widget child}) =>
+  Widget titleContainer(
+          {String title, String moreStr, Widget child, Widget preIcon}) =>
       Container(
         margin: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -214,7 +220,9 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
                       border: Border.all(width: 1, color: Colors.grey),
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
-                    child: Text(moreStr),
+                    child: Row(
+                      children: [preIcon ?? Container(), Text(moreStr)],
+                    ),
                   )
                 ],
               ),
@@ -288,14 +296,66 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
         ),
       );
 
-  Widget tuijian()=>titleContainer(
-title:'欧美流行精选',
-moreStr:'播放全部',
-child:SingleChildScrollView(
-   scrollDirection: Axis.horizontal,
-   child:Container()
-)
-  );
-
-
+  Widget tuijian() => titleContainer(
+        title: '欧美流行精选',
+        moreStr: '播放全部',
+        preIcon: Icon(
+          Icons.play_arrow,
+          color: Colors.white,
+          size: 16,
+        ),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: FutureBuilder(
+            future: request.dio.get(
+              '/recommend/resource?cookie=${Provider.of<Store>(context).cookie}',
+            ),
+            builder: (context, snapshot) {
+              Widget child = Container();
+              if (snapshot.hasData) {
+                List<dynamic> datas = snapshot.data.data['recommend'];
+                child = Swiper(
+                  autoplay: false,
+                  loop: false,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Column(
+                      children: [
+                        sounListIton(datas[index]),
+                        sounListIton(datas[index + 1]),
+                        sounListIton(datas[index + 2]),
+                      ],
+                    );
+                  },
+                  itemCount: (datas.length / 3).floor(),
+                );
+              }
+              return Container(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                width: MediaQuery.of(context).size.width,
+                height: 300,
+                child: child,
+              );
+            },
+          ),
+        ),
+      );
+  Widget sounListIton(Map<String, dynamic> ele) {
+    return Column(children: [
+      Container(
+        margin: EdgeInsets.only(left: 20),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              child: Image.network(
+                ele['creator']['backgroundUrl'],
+                width: 70,
+                height: 70,
+              ),
+            ),
+          ],
+        ),
+      )
+    ]);
+  }
 }
