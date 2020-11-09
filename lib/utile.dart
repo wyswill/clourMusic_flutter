@@ -6,7 +6,6 @@
  */
 
 import 'package:dio/dio.dart';
-import 'dart:math' as Math;
 
 class Request {
   Dio dio;

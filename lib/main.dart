@@ -2,7 +2,7 @@
  * @LastEditors: wyswill
  * @Description: 文件描述
  * @Date: 2020-11-06 10:57:54
- * @LastEditTime: 2020-11-06 16:47:44
+ * @LastEditTime: 2020-11-09 13:49:43
  */
 import 'package:flutter/material.dart';
 import 'package:flutter_cloudMusic/pages/account.dart';
@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
         ),
         scaffoldBackgroundColor: Colors.black,
         textTheme: TextTheme(
-          body1: TextStyle(color: Colors.white),
+          bodyText2: TextStyle(color: Colors.white),
         ),
       ),
       home: Scaffold(

@@ -2,12 +2,11 @@
  * @LastEditors: wyswill
  * @Description: 文件描述
  * @Date: 2020-11-06 11:34:05
- * @LastEditTime: 2020-11-09 11:52:25
+ * @LastEditTime: 2020-11-09 13:49:51
  */
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_cloudMusic/dto/banner.entity.dart';
 import 'package:flutter_cloudMusic/utile.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
