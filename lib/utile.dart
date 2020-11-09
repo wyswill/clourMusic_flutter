@@ -2,10 +2,11 @@
  * @LastEditors: wyswill
  * @Description: 工具类
  * @Date: 2020-11-06 15:14:50
- * @LastEditTime: 2020-11-06 17:10:55
+ * @LastEditTime: 2020-11-09 11:50:54
  */
 
 import 'package:dio/dio.dart';
+import 'dart:math' as Math;
 
 class Request {
   Dio dio;
@@ -15,4 +16,11 @@ class Request {
     dio.options.connectTimeout = 5000; //5s
     dio.options.receiveTimeout = 3000;
   }
+}
+
+String nuberToWrod(int number) {
+  String res = '';
+  int g = (number / 10000).floor();
+  if (g > 0) res += '$g万';
+  return res;
 }

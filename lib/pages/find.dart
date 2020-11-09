@@ -2,7 +2,7 @@
  * @LastEditors: wyswill
  * @Description: 文件描述
  * @Date: 2020-11-06 11:34:05
- * @LastEditTime: 2020-11-06 17:15:03
+ * @LastEditTime: 2020-11-09 11:52:25
  */
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -200,22 +200,25 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
         margin: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            Row(
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                ),
-                Expanded(child: Container()),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.grey),
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
+            Container(
+              margin: EdgeInsets.only(bottom: 10),
+              child: Row(
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                   ),
-                  child: Text(moreStr),
-                )
-              ],
+                  Expanded(child: Container()),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.grey),
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    child: Text(moreStr),
+                  )
+                ],
+              ),
             ),
             child
           ],
@@ -223,31 +226,66 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
       );
 
   Widget findSonList() => titleContainer(
-      title: '发现好歌单',
-      moreStr: '查看更多',
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: FutureBuilder(
-          future: request.dio.get('/personalized?limit=6'),
-          builder: (context, snapshot) {
-            List<Widget> childe = [];
-            if (snapshot.hasData) {
-              List<dynamic> datas = snapshot.data.data['result'];
-              childe = List.generate(
-                datas.length,
-                (index) => Container(
-                  width: 100,
-                  height: 100,
-                  child: Column(
-                    children: [Image.network(datas[index]['picUrl'])],
+        title: '发现好歌单',
+        moreStr: '查看更多',
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: FutureBuilder(
+            future: request.dio.get('/personalized?limit=6'),
+            builder: (context, snapshot) {
+              List<Widget> childe = [];
+              if (snapshot.hasData) {
+                List<dynamic> datas = snapshot.data.data['result'];
+                childe = List.generate(
+                  datas.length,
+                  (index) => Container(
+                    width: 100,
+                    height: 130,
+                    child: Stack(
+                      children: [
+                        Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(right: 10),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.network(datas[index]['picUrl']),
+                              ),
+                            ),
+                            Text(
+                              datas[index]['name'],
+                              style: TextStyle(fontSize: 12),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
+                        Positioned(
+                          right: 10,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.play_arrow_outlined,
+                                color: Colors.white,
+                                size: 15,
+                              ),
+                              Text(
+                                nuberToWrod(datas[index]['playCount']),
+                                style: TextStyle(fontSize: 12),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
+                );
+              }
+              return Row(
+                children: childe,
               );
-            }
-            return Row(
-              children: childe,
-            );
-          },
+            },
+          ),
         ),
-      ));
+      );
 }
