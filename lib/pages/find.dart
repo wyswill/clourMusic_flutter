@@ -2,7 +2,7 @@
  * @LastEditors: wyswill
  * @Description: 文件描述
  * @Date: 2020-11-06 11:34:05
- * @LastEditTime: 2020-11-09 13:49:51
+ * @LastEditTime: 2020-11-09 16:01:13
  */
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +11,8 @@ import 'package:flutter_cloudMusic/utile.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class Find extends StatefulWidget {
-  Find({Key key}) : super(key: key);
-
+  Find({Key key, this.arguments}) : super(key: key);
+  final arguments;
   @override
   _FindState createState() => _FindState();
 }
@@ -98,7 +98,7 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: [bannerSet(), cats(), findSonList()],
+          children: [bannerSet(), cats(), findSonList(),tuijian()],
         ),
       ),
     );
@@ -287,4 +287,15 @@ class _FindState extends State<Find> with TickerProviderStateMixin {
           ),
         ),
       );
+
+  Widget tuijian()=>titleContainer(
+title:'欧美流行精选',
+moreStr:'播放全部',
+child:SingleChildScrollView(
+   scrollDirection: Axis.horizontal,
+   child:Container()
+)
+  );
+
+
 }
